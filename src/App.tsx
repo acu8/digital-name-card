@@ -1,9 +1,15 @@
+import { Routes, Route } from "react-router-dom";
+import CardPage from "./components/CardPage";
+import Home from "./components/Home";
+import RegisterPage from "./components/RegisterPage";
+
 function App() {
   return (
-    <>
-      <h1 data-testid="title">Hello</h1>
-      <p>This is deploy test</p>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/cards/:user_id" element={<CardPage />} />
+      <Route path="/cards/register" element={<RegisterPage />} />
+    </Routes>
   );
 }
 
