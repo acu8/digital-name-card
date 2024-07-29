@@ -12,6 +12,10 @@ function Home() {
       <ChakraLink as={Link} to="/cards/register">
         Go to Register Page
       </ChakraLink>
+      <br />
+      <ChakraLink as={Link} to="/cards/search">
+        Go to Search Page
+      </ChakraLink>
     </Box>
   );
 }

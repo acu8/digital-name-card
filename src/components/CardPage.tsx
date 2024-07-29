@@ -12,8 +12,10 @@ import {
   Divider,
   Flex,
   Icon,
+  Button,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { SiQiita } from "react-icons/si";
 import { RiTwitterXFill } from "react-icons/ri";
@@ -27,6 +29,7 @@ function CardPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getAllData = async () => {
@@ -111,6 +114,13 @@ function CardPage() {
           </Flex>
         </CardFooter>
       </Card>
+      <Button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        戻る
+      </Button>
     </Box>
   );
 }
