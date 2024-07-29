@@ -8,6 +8,9 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,7 +25,3 @@ jobs:
 
       - name: Run cleanup script
         run: npx ts-node --esm ./batch/index.ts
-        env:
-          TZ: "Asia/Tokyo" # タイムゾーンを東京に設定
-        VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
