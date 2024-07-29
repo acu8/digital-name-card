@@ -7,6 +7,10 @@ import {
   Select,
   FormErrorMessage,
   Button,
+  Card,
+  CardBody,
+  Stack,
+  Container,
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -81,97 +85,125 @@ function RegisterPage() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onRegisterRecord)}>
-        <Heading mb={4}>名刺新規登録</Heading>
-        <Box p={5}>
-          <FormControl isInvalid={!!errors.user_id}>
-            <FormLabel>ユーザーID（英字で入力）</FormLabel>
-            <Input
-              placeholder="ユーザーID"
-              {...register("user_id", {
-                required: "ユーザーIDの入力は必須です",
-                pattern: {
-                  value: /^[A-Za-z]+$/i,
-                  message: "英字で入力してください",
-                },
-              })}
-            />
-            {errors.user_id && (
-              <FormErrorMessage>{errors.user_id.message}</FormErrorMessage>
-            )}
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl isInvalid={!!errors.name}>
-            <FormLabel>名前:</FormLabel>
-            <Input
-              placeholder="名前"
-              {...register("name", { required: "名前の入力は必須です" })}
-            />
-            {errors.name && (
-              <FormErrorMessage>{errors.name.message}</FormErrorMessage>
-            )}
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl isInvalid={!!errors.description}>
-            <FormLabel>自己紹介:</FormLabel>
-            <Input
-              placeholder="自己紹介"
-              {...register("description", {
-                required: "自己紹介の記入は必須です",
-              })}
-            />
+      <Container maxW={{ base: "100%", sm: "sm" }} px={{ base: 4, md: 0 }}>
+        <Heading m={6} textAlign="center" data-testid="title">
+          名刺新規登録
+        </Heading>
+        <Card boxShadow="md" backgroundColor="#fefefe" borderRadius="2xl">
+          <CardBody>
+            <form onSubmit={handleSubmit(onRegisterRecord)}>
+              <Stack spacing={6}>
+                <FormControl isInvalid={!!errors.user_id}>
+                  <FormLabel>ユーザーID（英字で入力）</FormLabel>
+                  <Input
+                    placeholder="ユーザーID"
+                    data-testid="user_id"
+                    {...register("user_id", {
+                      required: "ユーザーIDの入力は必須です",
+                      pattern: {
+                        value: /^[A-Za-z]+$/i,
+                        message: "英字で入力してください",
+                      },
+                    })}
+                  />
+                  {errors.user_id && (
+                    <FormErrorMessage>
+                      {errors.user_id.message}
+                    </FormErrorMessage>
+                  )}
+                </FormControl>
 
-            {errors.description && (
-              <FormErrorMessage>{errors.description.message}</FormErrorMessage>
-            )}
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl isInvalid={!!errors.skills}>
-            <FormLabel>好きな技術:</FormLabel>
-            <Select
-              placeholder="好きな技術を選択"
-              {...register("skills", { required: "技術の選択は必須です" })}
-            >
-              {skills &&
-                skills.map((skill) => (
-                  <option key={skill.id} value={skill.id}>
-                    {skill.name}
-                  </option>
-                ))}
-            </Select>
+                <FormControl isInvalid={!!errors.name}>
+                  <FormLabel>名前:</FormLabel>
+                  <Input
+                    placeholder="名前"
+                    data-testid="name"
+                    {...register("name", { required: "名前の入力は必須です" })}
+                  />
+                  {errors.name && (
+                    <FormErrorMessage>{errors.name.message}</FormErrorMessage>
+                  )}
+                </FormControl>
 
-            {errors.skills && (
-              <FormErrorMessage>{errors.skills.message}</FormErrorMessage>
-            )}
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl>
-            <FormLabel>Github ID:</FormLabel>
-            <Input placeholder="Github id" {...register("github_id")} />
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl>
-            <FormLabel>Qiita ID:</FormLabel>
-            <Input placeholder="Qiita id" {...register("qiita_id")} />
-          </FormControl>
-        </Box>
-        <Box p={5}>
-          <FormControl>
-            <FormLabel>X ID:</FormLabel>
-            <Input placeholder="x id" {...register("x_id")} />
-          </FormControl>
-        </Box>
-        <Box display="flex" alignItems="center" justifyContent="center">
-          <Button type="submit" variant="outline">
-            新規登録
-          </Button>
-        </Box>
-      </form>
+                <FormControl isInvalid={!!errors.description}>
+                  <FormLabel>自己紹介:</FormLabel>
+                  <Input
+                    placeholder="description"
+                    data-testid="description"
+                    {...register("description", {
+                      required: "自己紹介の記入は必須です",
+                    })}
+                  />
+                  {errors.description && (
+                    <FormErrorMessage>
+                      {errors.description.message}
+                    </FormErrorMessage>
+                  )}
+                </FormControl>
+
+                <FormControl isInvalid={!!errors.skills}>
+                  <FormLabel>好きな技術:</FormLabel>
+                  <Select
+                    placeholder="好きな技術を選択"
+                    data-testid="skills"
+                    {...register("skills", {
+                      required: "技術の選択は必須です",
+                    })}
+                  >
+                    {skills &&
+                      skills.map((skill) => (
+                        <option key={skill.id} value={skill.id}>
+                          {skill.name}
+                        </option>
+                      ))}
+                  </Select>
+                  {errors.skills && (
+                    <FormErrorMessage>{errors.skills.message}</FormErrorMessage>
+                  )}
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Github ID:</FormLabel>
+                  <Input
+                    placeholder="Github id"
+                    data-testid="github_id"
+                    {...register("github_id")}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Qiita ID:</FormLabel>
+                  <Input
+                    placeholder="Qiita id"
+                    data-testid="qiita_id"
+                    {...register("qiita_id")}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>X ID:</FormLabel>
+                  <Input
+                    placeholder="X id"
+                    data-testid="x_id"
+                    {...register("x_id")}
+                  />
+                </FormControl>
+
+                <Box display="flex" justifyContent="center" mt={6}>
+                  <Button
+                    type="submit"
+                    data-testid="register-button"
+                    colorScheme="blue"
+                    size="lg"
+                  >
+                    新規登録
+                  </Button>
+                </Box>
+              </Stack>
+            </form>
+          </CardBody>
+        </Card>
+      </Container>
     </>
   );
 }

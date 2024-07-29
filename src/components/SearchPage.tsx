@@ -7,6 +7,11 @@ import {
   Input,
   Button,
   Text,
+  Flex,
+  VStack,
+  Container,
+  Card,
+  CardBody,
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -50,49 +55,65 @@ function SearchPage() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSearch)}>
-        <Heading mb={4}>デジタル名刺アプリ</Heading>
-        <Box p={5} maxW="sm">
-          <FormControl isInvalid={!!errors.user_id}>
-            <FormLabel>ユーザーIDで検索</FormLabel>
-            <Input
-              placeholder="ユーザーID"
-              {...register("user_id", {
-                required: "ユーザーIDの入力は必須です",
-                pattern: {
-                  value: /^[A-Za-z0-9-_]+$/,
-                  message:
-                    "英数字、ハイフン(-)、アンダースコア(_)のみ使用できます",
-                },
-              })}
-            />
-            {errors.user_id && (
-              <FormErrorMessage>{errors.user_id.message}</FormErrorMessage>
-            )}
-          </FormControl>
-          {error && (
-            <Text color="red.500" mt={2}>
-              {error}
-            </Text>
-          )}
-        </Box>
-        <Button colorScheme="green" mt={5} type="submit">
-          検索
-        </Button>
-      </form>
-
-      <Button
-        colorScheme="green"
-        color="green"
-        variant="outline"
-        mt={5}
-        ml={2}
-        onClick={onClickRegister}
-      >
-        新規登録はこちら
-      </Button>
-    </>
+    <Flex minHeight="100vh" alignItems="center" justifyContent="center">
+      <Container maxW="md">
+        <VStack spacing={8} align="stretch">
+          <Heading textAlign="center" data-testid="title">
+            デジタル名刺アプリ
+          </Heading>
+          <Box>
+            <Card boxShadow="md" backgroundColor="#fefefe" borderRadius="2xl">
+              <CardBody>
+                <form onSubmit={handleSubmit(onSearch)}>
+                  <FormControl isInvalid={!!errors.user_id} mb={4}>
+                    <FormLabel>ユーザーIDで検索</FormLabel>
+                    <Input
+                      placeholder="ユーザーID"
+                      data-testid="user_id"
+                      {...register("user_id", {
+                        required: "ユーザーIDの入力は必須です",
+                        pattern: {
+                          value: /^[A-Za-z0-9-_]+$/,
+                          message:
+                            "英数字、ハイフン(-)、アンダースコア(_)のみ使用できます",
+                        },
+                      })}
+                    />
+                    {errors.user_id && (
+                      <FormErrorMessage>
+                        {errors.user_id.message}
+                      </FormErrorMessage>
+                    )}
+                  </FormControl>
+                  {error && (
+                    <Text color="red.500" mb={4}>
+                      {error}
+                    </Text>
+                  )}
+                  <Button
+                    colorScheme="green"
+                    type="submit"
+                    width="100%"
+                    data-testid="search-button"
+                  >
+                    検索
+                  </Button>
+                </form>
+              </CardBody>
+            </Card>
+          </Box>
+          <Button
+            data-testid="register-button"
+            colorScheme="green"
+            variant="outline"
+            onClick={onClickRegister}
+            width="100%"
+          >
+            新規登録はこちら
+          </Button>
+        </VStack>
+      </Container>
+    </Flex>
   );
 }
 

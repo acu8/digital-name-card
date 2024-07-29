@@ -80,48 +80,64 @@ function CardPage() {
     return <Spinner data-testid="loading" />;
   }
   return (
-    <Box p={5}>
-      <Card maxW="sm" size="sm">
-        <CardBody>
-          <Stack mt="6" spacing="3">
-            <Heading size="md" textAlign="center" mb={4}>
-              {user.name}
-            </Heading>
-            <Text dangerouslySetInnerHTML={{ __html: user.description }} />
-            <Text fontSize="1xl">スキル：{user.Skill?.name}</Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <Flex
-            gap={5}
-            alignItems="center"
-            justifyContent="center"
-            width="100%"
-          >
-            <ChakraLink
-              href={`https://github.com/${user.github_id}`}
-              isExternal
+    <Flex justifyContent="center" alignItems="center" minHeight="100vh">
+      <Box p={5}>
+        <Card maxW="sm" size="sm" borderRadius="2xl" backgroundColor="#fffcf9">
+          <CardBody>
+            <Stack mt="6" spacing="3">
+              <Heading size="md" textAlign="center" mb={4} data-testid="name">
+                {user.name}
+              </Heading>
+              <Text
+                dangerouslySetInnerHTML={{ __html: user.description }}
+                data-testid="description"
+              />
+              <Text fontSize="1xl" data-testid="skill">
+                スキル：{user.Skill?.name}
+              </Text>
+            </Stack>
+          </CardBody>
+          <Divider />
+          <CardFooter>
+            <Flex
+              gap={5}
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
             >
-              <Icon as={FaGithub} boxSize={6} />
-            </ChakraLink>
-            <ChakraLink href={`https://qiita.com/${user.qiita_id}`} isExternal>
-              <Icon as={SiQiita} boxSize={6} />
-            </ChakraLink>
-            <ChakraLink href={`https://twitter.com/${user.x_id}`} isExternal>
-              <Icon as={RiTwitterXFill} boxSize={6} />
-            </ChakraLink>
-          </Flex>
-        </CardFooter>
-      </Card>
-      <Button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        戻る
-      </Button>
-    </Box>
+              <ChakraLink
+                href={`https://github.com/${user.github_id}`}
+                isExternal
+              >
+                <Icon as={FaGithub} boxSize={6} data-testid="github" />
+              </ChakraLink>
+              <ChakraLink
+                href={`https://qiita.com/${user.qiita_id}`}
+                isExternal
+              >
+                <Icon as={SiQiita} boxSize={6} data-testid="qiita" />
+              </ChakraLink>
+              <ChakraLink href={`https://twitter.com/${user.x_id}`} isExternal>
+                <Icon as={RiTwitterXFill} boxSize={6} data-testid="x" />
+              </ChakraLink>
+            </Flex>
+          </CardFooter>
+        </Card>
+        <Flex justifyContent="center" mt={4}>
+          <Button
+            colorScheme="teal"
+            size="md"
+            mt={4}
+            data-testid="back-button"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            戻る
+          </Button>
+        </Flex>
+      </Box>
+    </Flex>
   );
 }
 
