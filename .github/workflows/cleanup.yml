@@ -1,0 +1,28 @@
+name: Daily Cleanup Cron Job
+
+on:
+  schedule:
+    - cron: "0 21 * * *" # UTC 21:00 = JST 06:00
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run cleanup script
+        run: npx ts-node --esm ./batch/index.ts
+        env:
+          TZ: "Asia/Tokyo" # タイムゾーンを東京に設定
+        VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}

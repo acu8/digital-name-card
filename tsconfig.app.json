@@ -27,5 +27,5 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include":["src", "./jest.setup.ts", "./src/ts/**/*"]
+  "include":["src", "./jest.setup.ts", "./src/ts/**/*", "batch"]
 }
