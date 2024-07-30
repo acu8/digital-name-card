@@ -24,4 +24,4 @@ jobs:
         run: npm install
 
       - name: Run cleanup script
-        run: npx ts-node-esm ./batch/index.ts
+        run: npx tsx ./batch/index.ts
