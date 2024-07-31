@@ -8,9 +8,6 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    env:
-      VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,5 +20,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Debug environment variables
+        run: |
+          echo "VITE_SUPABASE_URL is set: ${{ secrets.SUPABASE_URL != '' }}"
+          echo "VITE_SUPABASE_ANON_KEY is set: ${{ secrets.SUPABASE_ANON_KEY != '' }}"
+
       - name: Run cleanup script
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: npx tsx ./batch/index.ts
