@@ -4,26 +4,12 @@ async function cleanupRecords() {
   try {
     console.log("クリーンアップ処理を開始します。");
 
-    const { data: userSkillData, error: userSkillError } = await supabase
-      .from("user_skill")
-      .delete()
-      .select();
+    const { error } = await supabase.rpc('delete_all_records');
 
-    if (userSkillError) {
-      console.error("user_skillレコードの削除中にエラーが発生しました:", userSkillError);
+    if (error) {
+      console.error("レコードの削除中にエラーが発生しました:", error);
     } else {
-      console.log(`${userSkillData.length}件のuser_skillレコードを削除しました。`);
-    }
-
-    const { data: usersData, error: usersError } = await supabase
-      .from("users")
-      .delete()
-      .select();
-
-    if (usersError) {
-      console.error("usersレコードの削除中にエラーが発生しました:", usersError);
-    } else {
-      console.log(`${usersData.length}件のusersレコードを削除しました。`);
+      console.log("すべてのレコードが削除されました。");
     }
 
     console.log("クリーンアップ処理が完了しました。");
