@@ -7,9 +7,9 @@ This repository contains a digital name card application built using React, Type
 This application is designed for use during one-day meetups, and the data for created cards is deleted after 24 hours.
 
 # Technologies Used
-React: A JavaScript library for building user interfaces.
-TypeScript: A superset of JavaScript that adds static types.
-Vite: A next-generation frontend tool for development and build.
+- React: A JavaScript library for building user interfaces.
+- TypeScript: A superset of JavaScript that adds static types.
+- Vite: A next-generation frontend tool for development and build.
 
 ## Dependencies
 
