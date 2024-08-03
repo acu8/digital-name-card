@@ -18,6 +18,7 @@ This project relies on the following dependencies:
 - react
 - react-dom
 - Vite
+<br />
   These dependencies will be installed when you run npm install.
 
 ## Installation
