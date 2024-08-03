@@ -1,5 +1,4 @@
 import {
-  Box,
   Heading,
   Link as ChakraLink,
   Flex,
