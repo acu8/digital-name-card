@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![ezgif-5-aa74961cc0](https://github.com/user-attachments/assets/7539f02e-ce8c-4653-8839-5da39c80c391)
 
-Currently, two official plugins are available:
+# Digital Name Card Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository contains a digital name card application built using React, TypeScript, and Vite. It provides a modern, interactive way to share contact information.
+This application is designed for use during one-day meetups, and the data for created cards is deleted after 24 hours.
 
-## Expanding the ESLint configuration
+# Technologies Used
+- React: A JavaScript library for building user interfaces.
+- TypeScript: A superset of JavaScript that adds static types.
+- Vite: A next-generation frontend tool for development and build.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Dependencies
 
-- Configure the top-level `parserOptions` property like this:
+This project relies on the following dependencies:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- react
+- react-dom
+- Vite
+<br />
+  These dependencies will be installed when you run npm install.
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/acu8/digital-name-card.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```bash
+cd digital-name-card
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+## Usage
+
+1. Start the development server:
+
+```bash
+npm run dev
+```
+
+2. Open your browser and navigate to http://localhost:3000.
+
+## Environment Variables
+
+The following environment variables are required:
+
+- VITE_SUPABASE_URL
+- VITE_SUPABASE_ANON_KEY
+- FIREBASE_KEY
+- FIREBASE_PROJECT_ID
+
+These should be set in your CI/CD environment or in a .env file for local development.
