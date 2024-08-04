@@ -32,25 +32,6 @@ function Home() {
           </Heading>
           <ChakraLink
             as={Link}
-            to="/cards/sample-id"
-            _hover={{ textDecoration: "none" }}
-            css={bounceStyle}
-          >
-            <Card
-              boxShadow="md"
-              backgroundColor="#FFFDE6"
-              borderRadius="2xl"
-              _hover={{ backgroundColor: "#E6FFF0" }}
-              cursor="pointer"
-              p={3}
-            >
-              <CardBody py={2} textAlign="center">
-                View Example Card
-              </CardBody>
-            </Card>
-          </ChakraLink>
-          <ChakraLink
-            as={Link}
             to="/cards/register"
             _hover={{ textDecoration: "none" }}
             css={bounceStyle}
